@@ -30,10 +30,14 @@ const readInputs = (file, count) => {
     if (err) {
       return console.error('Error reading file: ', err);
     }
-    try {
+    try {      
       const parsedData = JSON.parse(data);
+
       return countHighestScores(parsedData, count);
     } catch (e) {
+      // regex to capture position of unexpected token 
+      // slice file at the position of unexpected token
+      // attempt to parse JSON again and return highest scores
       return console.error(
         'Invalid JSON Format. No JSON object could be decoded.'
       );
